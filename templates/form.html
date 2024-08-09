@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Denuncias</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Formulario de Denuncias Anónimas</h1>
+    </header>
+
+    <div class="container">
+        <section>
+            <form method="POST" enctype="multipart/form-data">
+                <label for="nombre">Nombre (opcional):</label>
+                <input type="text" id="nombre" name="nombre">
+                
+                <label for="email">Correo electrónico (opcional):</label>
+                <input type="email" id="email" name="email">
+                
+                <label for="mensaje">Denuncia:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+                
+                <label for="evidencia">Subir evidencia (opcional):</label>
+                <input type="file" id="evidencia" name="evidencia">
+                
+                <button type="submit">Enviar Denuncia</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Página de Denuncias. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

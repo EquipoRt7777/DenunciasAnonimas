@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Denuncias Recibidas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Denuncias Recibidas</h1>
+        <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+    </header>
+    <div class="container">
+        <section>
+            <ul class="denuncias-list">
+                {% for denuncia in denuncias %}
+                    <li>
+                        {{ denuncia['mensaje'] }} - <em>{{ denuncia['nombre'] or "Anónimo" }}</em>
+                        {% if denuncia['evidencia'] %}
+                            <p>Evidencia: <a href="{{ url_for('static', filename='uploads/' ~ denuncia['evidencia']) }}">Ver archivo</a></p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Página de Denuncias. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

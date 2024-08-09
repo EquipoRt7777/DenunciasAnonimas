@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Denuncias</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Página de Denuncias Anónimas</h1>
+    </header>
+    <div class="container">
+        <nav>
+            <a href="{{ url_for('form') }}">Denunciar</a>
+            <a href="{{ url_for('quienes_somos') }}">Quiénes Somos</a>
+            <a href="{{ url_for('denuncias') }}">Ver Denuncias</a>
+        </nav>
+    </div>
+    <footer>
+        <p>&copy; 2024 Página de Denuncias. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
