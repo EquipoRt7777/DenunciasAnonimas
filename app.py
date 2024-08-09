@@ -65,7 +65,8 @@ def login():
     
     return render_template('login.html')
 
-@app.route('/logout')
+# Aquí se modificó para aceptar métodos GET y POST
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
     session.pop('logged_in', None)
     flash('Has cerrado sesión correctamente', 'success')

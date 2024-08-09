@@ -9,21 +9,21 @@
 <body>
     <header>
         <h1>Denuncias Recibidas</h1>
-        <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
     </header>
     <div class="container">
-        <section>
-            <ul class="denuncias-list">
-                {% for denuncia in denuncias %}
-                    <li>
-                        {{ denuncia['mensaje'] }} - <em>{{ denuncia['nombre'] or "Anónimo" }}</em>
-                        {% if denuncia['evidencia'] %}
-                            <p>Evidencia: <a href="{{ url_for('static', filename='uploads/' ~ denuncia['evidencia']) }}">Ver archivo</a></p>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </section>
+        <ul class="denuncias-list">
+            {% for denuncia in denuncias %}
+                <li>
+                    {{ denuncia['mensaje'] }} - <em>{{ denuncia['nombre'] or "Anónimo" }}</em>
+                    {% if denuncia['evidencia'] %}
+                        <p>Evidencia: <a href="{{ url_for('static', filename='uploads/' ~ denuncia['evidencia']) }}">Ver archivo</a></p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <form method="POST" action="{{ url_for('logout') }}">
+            <button class="logout-button">Cerrar Sesión</button>
+        </form>
     </div>
     <footer>
         <p>&copy; 2024 Página de Denuncias. Todos los derechos reservados.</p>

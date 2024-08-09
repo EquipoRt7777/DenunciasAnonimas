@@ -2,20 +2,20 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Página de Denuncias</title>
+    <title>Página de Denuncias Anónimas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
         <h1>Página de Denuncias Anónimas</h1>
     </header>
     <div class="container">
-        <nav>
-            <a href="{{ url_for('form') }}">Denunciar</a>
-            <a href="{{ url_for('quienes_somos') }}">Quiénes Somos</a>
-            <a href="{{ url_for('denuncias') }}">Ver Denuncias</a>
-        </nav>
+        <p>Bienvenido a nuestro sitio de denuncias anónimas. Tu privacidad es nuestra prioridad.</p>
+        <a href="{{ url_for('form') }}"><button>Realizar Denuncia</button></a>
+        <a href="{{ url_for('quienes_somos') }}"><button>¿Quiénes Somos?</button></a>
+        <a href="{{ url_for('login') }}"><button>Ver Denuncias</button></a>
     </div>
     <footer>
         <p>&copy; 2024 Página de Denuncias. Todos los derechos reservados.</p>
