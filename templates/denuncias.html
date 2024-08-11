@@ -14,6 +14,7 @@
         <ul class="denuncias-list">
             {% for denuncia in denuncias %}
                 <li>
+                    <strong>Tipo:</strong> {{ denuncia['tipo'] }}<br>
                     {{ denuncia['mensaje'] }} - <em>{{ denuncia['nombre'] or "Anónimo" }}</em>
                     {% if denuncia['evidencia'] %}
                         <p>Evidencia: <a href="{{ url_for('static', filename='uploads/' ~ denuncia['evidencia']) }}">Ver archivo</a></p>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reportar Robo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Reportar Robo</h1>
+    </header>
+    <div class="container">
+        <form method="POST">
+            <label for="descripcion">Descripción del Robo:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+            
+            <label for="ubicacion">Ubicación:</label>
+            <input type="text" id="ubicacion" name="ubicacion" required>
+            
+            <button type="submit">Enviar Reporte</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 Página de Denuncias. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

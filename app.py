@@ -37,7 +37,6 @@ def add_column_evidencia():
     try:
         conn.execute('ALTER TABLE denuncias ADD COLUMN evidencia TEXT')
     except sqlite3.OperationalError:
-        # Si la columna ya existe, ignorar el error
         pass
     conn.commit()
     conn.close()
@@ -65,7 +64,6 @@ def login():
     
     return render_template('login.html')
 
-# Aquí se modificó para aceptar métodos GET y POST
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     session.pop('logged_in', None)
@@ -74,6 +72,9 @@ def logout():
 
 @app.route('/form', methods=['GET', 'POST'])
 def form():
+    if not session.get('privacidad_aceptada'):
+        return redirect(url_for('aviso_privacidad', next='form'))
+
     if request.method == 'POST':
         nombre = request.form['nombre']
         email = request.form['email']
@@ -109,9 +110,36 @@ def denuncias():
 def quienes_somos():
     return render_template('quienes-somos.html')
 
+@app.route('/aviso-privacidad', methods=['GET', 'POST'])
+def aviso_privacidad():
+    if request.method == 'POST':
+        session['privacidad_aceptada'] = True
+        next_page = request.args.get('next', 'index')
+        return redirect(url_for(next_page))
+    return render_template('aviso_privacidad.html')
+
+@app.route('/reportar-robo', methods=['GET', 'POST'])
+def reportar_robo():
+    if not session.get('privacidad_aceptada'):
+        return redirect(url_for('aviso_privacidad', next='reportar_robo'))
+
+    if request.method == 'POST':
+        descripcion = request.form['descripcion']
+        ubicacion = request.form['ubicacion']
+        
+        conn = get_db_connection()
+        conn.execute('INSERT INTO denuncias (nombre, mensaje, evidencia) VALUES (?, ?, ?)',
+                     ('Anónimo', f"Robo: {descripcion}, Ubicación: {ubicacion}", None))
+        conn.commit()
+        conn.close()
+        flash('Robo reportado exitosamente', 'success')
+        return redirect(url_for('index'))
+    return render_template('reportar_robo.html')
+
 if __name__ == '__main__':
     create_table()
     add_column_evidencia()
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
     app.run(debug=True)
+
